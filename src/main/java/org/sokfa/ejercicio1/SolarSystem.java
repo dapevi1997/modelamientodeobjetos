@@ -2,14 +2,22 @@ package org.sokfa.ejercicio1;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 /**
+ * Esta clase representa el sistema planetario llamado Sistema Solar.
  *
- * @author dapevi1997
+ * @version 1.0.0 2022-06-02
+ *
+ * @author DANIEL PEREZ VITOLA - dapevi97@gmail.com
+ *
+ * @since 1.0.0
+ *
  */
 public class SolarSystem extends PlanetarySystem implements ISystemBody {
 
+    /**
+     * Contructor de la clase.
+     */
     public SolarSystem() {
 
         this.name = "SISTEMA SOLAR";
@@ -18,17 +26,11 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
 
     }
 
-    public enum Body {
-        TIERRA,
-        MARTE,
-        MERCURIO,
-        VENUS,
-        JUPITER,
-        SATURNO,
-        URANO,
-        NEPTUNO;
-    }
-
+    /**
+     * Médodo para agregar cuerpos a la lista del Sistema Solar.
+     *
+     * @return Arreglo tipo object de los cuerpos del sistema solar.
+     */
     private List<SystemBody> addBodies() {
         List<SystemBody> systemBodys = new LinkedList<>();
 
@@ -44,6 +46,9 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
         return systemBodys;
     }
 
+    /**
+     * Método que muestra en consola la información del Sistema Solar.
+     */
     @Override
     public void showInformation() {
 
@@ -68,8 +73,19 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
 
     }
 
+    /**
+     * Método para calcular la distancia entre dos cuerpos del sistema
+     * planetario.
+     *
+     * @param body1 Tipo object, primer cuerpo.
+     * @param body2 Tipo object, segundo cuerpo.
+     * @return Distncia entre los dos cuerpos.
+     */
     @Override
     public double distanceBetweenTwoBodies(SystemBody body1, SystemBody body2) {
+        /**
+         * Variable para almacenar la distancia.
+         */
         double distance;
 
         distance = Math.abs(body1.getDistanceToTheSun() - body2.getDistanceToTheSun());
@@ -78,15 +94,44 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
 
     }
 
+    /**
+     * Método para calcular la fuera de atracción entre dos cuerpos del sistema.
+     *
+     * @param body1 Tipo Enum, primer cuerpo.
+     * @param body2 Tipo Enum, segundo cuerpo.
+     */
     @Override
     public void attractionBetweenTwoBodies(Enum body1, Enum body2) {
+        /**
+         * Variable para almacenar el resultado de la fuerza de atracción.
+         */
         double attraction;
+        /**
+         * Variable para almacenar el índice del vector que contiene al cuerpo
+         * 1.
+         */
         int locationBody1 = 0;
+        /**
+         * Variable para almacenar el índice del vector que contiene al cuerpo
+         * 2.
+         */
         int locationBody2 = 1;
+        /**
+         * Representa la masa del primer cuerpo.
+         */
         double m1;
+        /**
+         * Representa la masa del segundo cuerpo.
+         */
         double m2;
+        /**
+         * Representa la distancia entre el cuerpo1 y el cuerpo2.
+         */
         double r;
-
+        /**
+         * Estructura condicional para encontrar la ubicación en el carreglo del
+         * primer cuerpo.
+         */
         for (int i = 0; i < bodies.size(); i++) {
 
             if (body1.toString().equals(bodies.get(i).getName().toUpperCase())) {
@@ -94,7 +139,10 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
                 break;
             }
         }
-
+        /**
+         * Estructura condicional para encontrar la ubicación en el carreglo del
+         * segundo cuerpo.
+         */
         for (int i = 0; i < bodies.size(); i++) {
 
             if (body2.toString().equals(bodies.get(i).getName().toUpperCase())) {
@@ -107,15 +155,26 @@ public class SolarSystem extends PlanetarySystem implements ISystemBody {
         r = distanceBetweenTwoBodies(bodies.get(locationBody1), bodies.get(locationBody2));
 
         attraction = G * (m1 * m2 / Math.pow(r, 2));
-        
 
         String name1 = bodies.get(locationBody1).getName();
         String name2 = bodies.get(locationBody2).getName();
         System.out.println("*La fuerza de atracción (N) entre " + name1 + " y " + name2 + " es: " + attraction);
 
-      
     }
 
-   
+    /**
+     * Lista de cuerpos que se pueden poner en el método que calcular la fuerza
+     * de atracción entre dos cuerpos.
+     */
+    public enum Body {
+        TIERRA,
+        MARTE,
+        MERCURIO,
+        VENUS,
+        JUPITER,
+        SATURNO,
+        URANO,
+        NEPTUNO;
+    }
 
 }
