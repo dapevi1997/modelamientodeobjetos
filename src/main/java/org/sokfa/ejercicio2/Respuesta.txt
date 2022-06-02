@@ -1,0 +1,8 @@
+Debido a que la información en la web sobre si es o no posible tener el método 
+en diferentes clases es poca y confusa, decidí intentarlo por mi cuenta. Logré 
+concluir que si es posible. El punto de entrada se puede configurar en el 
+archivo pom generado por Maven, indicando la ubicación de la clase que lo 
+contiene.
+
+<exec.mainClass>org.sokfa.ejercicio1.Ejercicio1</exec.mainClass> 
+
