@@ -34,17 +34,33 @@ public class Ejercicio3 {
          * usuario.
          */
         int pickedMethod;
+        /**
+         * Bandera para el ciclo while.
+         */
+        boolean flag = true;
 
         System.out.println("***Bienvenido al programa***");
-        System.out.print("Elija el tamaño del array: ");
         /**
-         * Excepcion al usuario escribir una entrada inadecuada.
+         * Ciclo para verificar que el usuario digite una entrada correcta.
          */
-        try {
-            arraySize = in.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("***Entrada no permitida.***");
-        }
+        do {
+            /**
+             * Excepcion al usuario escribir una entrada inadecuada.
+             */
+            try {
+                System.out.print("Elija el tamaño del array: ");
+                arraySize = in.nextInt();
+                flag = false;
+
+            } catch (InputMismatchException e) {
+                System.out.println("*******Advertencia*******");
+                System.out.println("¡Debe ingresar un entero!");
+                System.out.println("*************************");
+                in.next();
+
+            }
+        } while (flag);
+
         /**
          * Almacenar localmente la opción escogida por el usuario.
          */
